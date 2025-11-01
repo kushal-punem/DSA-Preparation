@@ -143,7 +143,8 @@ bool detecLoop(Node* &head){
 
     //empty list
     if(head == NULL) return false;
-
+     
+    //using map
     map<Node*, bool> visited;
 
     Node* temp = head;
@@ -162,6 +163,72 @@ bool detecLoop(Node* &head){
 }
 
 
+//detect loop using slow and fast approach
+Node* floydDetectLoop(Node* head){
+
+    //if empty list
+    if(head == NULL) return NULL;
+
+    Node* slow = head;
+    Node* fast = head;
+    
+    while(fast != NULL){
+        fast = fast -> next;
+
+        if(fast != NULL){
+            fast = fast -> next;
+        }
+
+        slow = slow -> next;
+
+        if(slow == fast){
+            cout << "present at: " << slow -> next << endl;
+            return slow;
+        }
+
+        return NULL;
+
+    }
+
+
+}
+
+
+// Distance travelled by fast = 2 * distance travelled by slow
+// A + X * C = A + Y * C + B
+// A + B = x times of C
+Node* getStartingNode(Node* head){
+    
+    if(head == NULL) return NULL;
+
+    Node* intersection = floydDetectLoop(head);
+    Node* slow = head;
+
+    while(slow != intersection){
+        slow = slow -> next;
+        intersection = intersection -> next;
+
+    }
+
+    return slow;
+
+}
+
+
+void removeLoop(Node* head){
+    
+    if(head == NULL) return NULL;
+
+    Node* startOfLoop = floydDetectLoop(head);
+    Node* temp = head;
+
+    while(temp -> next != startOfLoop){
+        temp = temp -> next;
+    }
+
+    temp -> next = NULL;
+
+}
 
 
 int main(){
