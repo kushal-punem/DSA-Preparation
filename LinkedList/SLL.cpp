@@ -97,6 +97,72 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d){
 
 }
 
+void deleteNode(Node* &head, int position){
+    
+    //delete start node 
+    if(position == 1){
+        Node* temp = head;
+        head = head -> next;
+        temp -> next = NULL;
+        delete temp;
+    }else{
+
+        Node* curr = head;
+        Node* prev = NULL;
+        int cnt = 1;
+
+        while(cnt < position){
+            curr = curr -> next;
+            prev = curr;
+            cnt++;
+        }
+
+        prev -> next = curr -> next;
+        curr -> next = NULL;
+        delete curr;
+    }
+
+}
+
+bool isCircularList(Node* &head){
+
+    Node* temp = head;
+
+    while(temp != NULL && temp != head){
+        temp = temp -> next;
+    }
+
+    if(temp == head){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool detecLoop(Node* &head){
+
+    //empty list
+    if(head == NULL) return false;
+
+    map<Node*, bool> visited;
+
+    Node* temp = head;
+    while(temp != NULL){
+
+        //if cycle is present
+        if(visited[temp] == true) return true;
+
+        visited[temp] = true;
+        temp = temp -> next;
+        
+    }
+
+    return false;
+
+}
+
+
+
 
 int main(){
     
