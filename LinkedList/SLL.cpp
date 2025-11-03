@@ -126,7 +126,7 @@ void deleteNode(Node* &head, int position){
 
 bool isCircularList(Node* &head){
 
-    Node* temp = head;
+    Node* temp = head -> next;
 
     while(temp != NULL && temp != head){
         temp = temp -> next;
