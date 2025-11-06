@@ -47,4 +47,17 @@ Note: There are 5 ways to remove a loop and there are 3 ways to detect cycle
   - approach 2: make 3 sperate lists for 0s 1s and 2s then merge them accordingly
 
 # Merge 2 sorted LL
-  - pick one node and 
+- 
+
+# Copy List with Random pointer 
+- Approach 1: O(n^2) ->>
+- Approach 2: Time: O(n) , Space: O(n)
+  - create a clone list
+  - Link original nodes to clone nodes using maps
+  - Update random pointers
+- Approach 3: Time: O(n) , Space: O(1)
+  - create a clone list 
+  - Add cloneNode in between original Nodes
+  - Copy Random pointers 
+  - revert changes done in step 2
+  - return answer

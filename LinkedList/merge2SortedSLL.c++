@@ -55,3 +55,58 @@ void insertAtTail(Node* &tail, int d){
     tail = newNode;
 
 }
+
+void solve(Node* first, Node* second){
+
+    //if only single node is  present in first list respectively then merge both of them
+    if(first -> next == NULL){
+        first -> next = second;
+
+    }
+
+        
+
+
+
+}
+
+
+void sortTwoList(Node* first, Node* second){
+    
+    if(first == NULL) return second;
+    if(second == NULL) return first;
+
+    if(first ->  data <= second -> data)
+        solve(first, second);
+    else
+        solve(second, first);
+    
+}
+
+int main(){
+    Node* node1 = new Node(1);
+    Node* node2 = new Node(10);
+
+    Node* head1 = node1;
+    Node* tail1 = node1;
+
+    Node* head2 = node2;
+    Node* tail2 = node2;
+
+    insertAtTail(tail1, 2);
+    insertAtTail(tail1, 3);
+    insertAtTail(tail1, 5);
+    insertAtTail(tail1, 2);
+
+    insertAtTail(tail2, 20);
+    insertAtTail(tail2, 30);
+    insertAtTail(tail2, 20);
+    insertAtTail(tail2, 20);
+
+    print(head1);
+    print(head2);
+
+
+
+    return 0;
+}
