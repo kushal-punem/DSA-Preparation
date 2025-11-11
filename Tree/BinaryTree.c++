@@ -115,6 +115,33 @@ void levelOrder(Node* root){
     
 }
 
+void iterativePreOrder(Node* root){
+
+    if(root == NULL) return;
+
+    stack<Node*> s;
+    vector<int> preorder;
+
+    s.push(root);
+
+    while(!s.empty()){
+
+        Node* top = s.top();
+        s.pop();
+
+        preorder.push_back(top -> val);
+
+        if(top -> right != NULL) s.push(top -> right);
+        if(top -> left != NULL) s.push(top -> left);
+
+    }
+
+    for(auto &ele: preorder){
+        cout << ele << " ";
+    }
+
+}
+
 int main(){
     Node* root = new Node(1);
 
@@ -134,10 +161,10 @@ int main(){
     recursivePreOrder(root);
     cout << "\n PostOrder: ";
     recursivePostOrder(root);
-
-    cout << endl;
-
+    cout << "\nlevelOrder: " ;
     levelOrder(root);
+    cout << "\niterativePreOrder: ";
+    iterativePreOrder(root);
     
     //It calls the destructor ~Node() for the Node which is pointed ny root before freeing the memory.
     // delete root;
