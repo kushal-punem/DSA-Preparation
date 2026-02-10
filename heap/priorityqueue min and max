@@ -1,0 +1,15 @@
+// in here the priority_queue by default is max heap
+// we dont need of using any type of extra
+// ----------------max heap---> top element--> largeest
+// priority_queue<int> pq;
+// use push(),pop,empty(),top()----< fucntion/>
+
+as for the min heap-- topelemnt --> smallest
+priority_queue<int, vector<int>, greater<int>> pq; // Min heap
+
+priority_queue<
+int, // data type
+vector<int>, // container
+greater<int> // comparator → min heap
+
+> pq;

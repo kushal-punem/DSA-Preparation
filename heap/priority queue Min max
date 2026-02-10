@@ -1,0 +1,5 @@
+// in here the priority_queue by default is max heap
+// we dont need of using any type of extra
+// ----------------max heap
+// priority_queue<int> pq;
+// use the

@@ -1,0 +1,67 @@
+We can identify that a heap is being used because the code uses a priority_queue. In C++, priority_queue is implemented internally using a heap data structure, where elements are accessed based on priority rather than insertion order.
+
+----------- question
+through tht question
+
+✅ How to identify Heap usage from the question statement (English)
+
+Agar question me yeh keywords / conditions dikhen, to samajh jao heap / priority queue use hoga 👇
+
+🔑 1. When the question says “Kth smallest / Kth largest”
+
+Find the kth smallest element
+Find the kth largest element
+
+➡️ Heap is indicated, because we need repeated access to min or max element.
+
+Identification statement:
+
+Since the problem asks for the kth smallest/largest element, a heap is suitable because it allows efficient retrieval of minimum or maximum elements.
+
+basic of heap mostly used with prority_queue
+code:
+using namespace std;
+// function to find kth smallest
+int kthSmallest(vector<int> &arr, int k)
+{
+priority_queue<int> pq; // max heap
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+        pq.push(arr[i]);
+
+        // keep only k elements in heap
+        if (pq.size() > k)
+        {
+            pq.pop();
+        }
+    }
+
+    return pq.top(); // kth smallest
+
+}
+int main()
+{
+int n, k;
+cin >> n >> k;
+vector<int> arr(n);
+for (int i = 0; i < n; i++)
+{
+cin >> arr[i];
+}
+
+    int result = kthSmallest(arr, k);
+    cout << "Kth Smallest Element = " << result;
+
+    return 0;
+
+}
+
+0-----------------time complexity
+Heap Operations
+Operation Time Complexity
+push() O(log n)
+pop() O(log n)
+top() O(1)
+Build heap (n inserts) O(n log n)
+Build heap (heapify) O(n)
