@@ -174,21 +174,79 @@ void iterativeInOrder(Node* root){
 
 }
 
-//incomplete
-void iterativePostOrder(Node* root){
+void iterativePostOrder_2Stack(Node* root){
+
+    stack<Node*> s1, s2;
+    vector<int> postorder;
     
+    //
     if(root == NULL) return;
 
-    stack<Node*> s;
+    s1.push(root);
 
-    s.push(root);
+    while(!s1.empty()){
 
-    while(!s.empty()){
+        root = s1.top();
+        s1.pop();
+
+        s2.push(root);
+
+        if(root -> left != NULL) s1.push(root -> left);
+        if(root -> right != NULL) s1.push(root -> right);
+
+    }
+
+    while(!s2.empty()){
+        postorder.push_back(s2.top() -> val);
+        s2.pop();
+    }
+
+    for(auto &i: postorder){
+        cout << i << " ";
+    }
+
+}
+
+
+void iterativePostOrder_1Stack(Node* root){
+
+    stack<Node*> s1;
+    vector<int> postorder;
+    Node* curr = root;
+
+    while(curr != NULL || !s1.empty()){
+
+        if(curr != NULL){
+            s1.push(curr);
+            curr = curr -> left;
+        }
+        else{
+            Node* temp = s1.top() -> right;
+
+            if(temp == NULL){
+                temp = s1.top();
+                s1.pop();
+                postorder.push_back(temp -> val);
+
+
+                while(!s1.empty() && temp == s1.top() -> right){
+                    temp = s1.top();
+                    s1.pop();
+                    postorder.push_back(temp -> val);
+            
+                }
+
+            }else{
+                curr = temp;
+            }
+            
+        }
+
+
+    }
     
-        Node* currNode = s.top();
-
-        if(currNode -> right != NULL) s.push(currNode -> right); 
-        if(currNode -> right != NULL) s.push(currNode -> left); 
+    for(auto &i: postorder){
+        cout << i << " ";
     }
 
 }
@@ -221,9 +279,12 @@ int main(){
     cout << "\niterativeInOrder: ";
     iterativeInOrder(root);
     
-    // iterativePostOrder_1Stack(root);
-    // iterativePreOrder_2Stack(root);
+    cout << "\niterativePostOrder_2Stack: ";
+    iterativePostOrder_2Stack(root);
     
+    cout << "\niterativePostOrder_1Stack: ";
+    iterativePostOrder_1Stack(root);
+
     //It calls the destructor ~Node() for the Node which is pointed ny root before freeing the memory.
     // delete root;
 
